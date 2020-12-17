@@ -6,36 +6,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Model;
-//using Microsoft.AspNetCore.Identity;
-//using Microsoft.IdentityModel.Tokens;
-//using System.Security.Claims;
-//using System.Text;
-//using System.IdentityModel.Tokens.Jwt;
-//using Microsoft.Extensions.Options;
-//using Microsoft.AspNetCore.Authorization;
-//using System.Web.Http.Cors;
+using System.Net;
+using System.Net.Mail;
 
 namespace Backend.Controllers
 {
-    //[EnableCors(origins: "https://localhost:44372", headers: "*", methods: "*")]
     [Route("api/[controller]")]
-    //[AllowAnonymous]
     [ApiController]
     public class UsersController : ControllerBase
     {      
 
         private readonly ApplicationDbContext _context;
-        //private readonly UserManager<User> userManager;
-        //private readonly RoleManager<IdentityRole> roleManager;
-        //private readonly IConfiguration _configuration;
-
-        //public UsersController(ApplicationDbContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
-        //{
-        //    this.userManager = userManager;
-        //    this.roleManager = roleManager;
-        //    _configuration = configuration;
-        //    _context = context;
-        //}
 
         public UsersController(ApplicationDbContext context)
         {
@@ -54,7 +35,6 @@ namespace Backend.Controllers
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
-
             if (user == null)
             {
                 return NotFound();

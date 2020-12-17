@@ -4,14 +4,16 @@ using Backend.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201214152755_update_third")]
+    partial class update_third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +57,6 @@ namespace Backend.Migrations
 
                     b.Property<string>("ChiTietGD")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("NgayGD")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("TenCongThanhToan")
                         .HasColumnType("nvarchar(max)");
@@ -118,14 +117,8 @@ namespace Backend.Migrations
                     b.Property<string>("ChiTiet")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DiaChiGiaoHang")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("MGD")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayXN")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("SanPhamInHoaDonMaHD")
                         .HasColumnType("int");
@@ -139,8 +132,8 @@ namespace Backend.Migrations
                     b.Property<string>("TenHD")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TrangThaiHD")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("TrangThaiHD")
+                        .HasColumnType("bit");
 
                     b.HasKey("MaHD");
 
@@ -228,9 +221,6 @@ namespace Backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("urlHinh")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserID");

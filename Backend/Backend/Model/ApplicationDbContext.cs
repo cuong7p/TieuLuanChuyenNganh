@@ -17,14 +17,10 @@ namespace Backend.Model
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<SanPham> SanPhams { get; set; }
-        public DbSet<NhomSanPham> NhomSanPhams { get; set; }
-        public DbSet<NhaSanXuat> NhaSanXuats { get; set; }
         public DbSet<HoaDon> HoaDons { get; set; }
         public DbSet<HinhAnh> HinhAnhs { get; set; }
         public DbSet<GiaoDich> GiaoDiches { get; set; }
-        public DbSet<ChiTietSanPham> ChiTietSanPhams { get; set; }
         public DbSet<SanPhamInHoaDon> SanPhamInHoaDons { get; set; }
 
 
@@ -36,49 +32,33 @@ namespace Backend.Model
                 entity.HasOne(a => a.account).WithOne(u => u.user).HasForeignKey<Account>(a => a.UserID).OnDelete(DeleteBehavior.Cascade);
                 //entity.HasOne(a => a.role).WithMany(u => u.users).HasForeignKey(a => a.RoleID).OnDelete(DeleteBehavior.Restrict);
             });          
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.Property(e => e.RoleID).UseIdentityColumn();                  
-            });
             modelBuilder.Entity<Account>(entity =>
             {
                 entity.Property(e => e.AccountID).UseIdentityColumn();
                 //entity.HasOne(a => a.user).WithOne(u => u.account).HasForeignKey<User>(a => a.UserID).OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.role).WithMany(u => u.accounts).HasForeignKey(a => a.RoleID).OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne(a => a.role).WithMany(u => u.accounts).HasForeignKey(a => a.RoleID).OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<SanPham>(entity =>
             {
                 entity.Property(e => e.MaSP).UseIdentityColumn();
-                entity.HasOne(a => a.chiTietSanPham).WithOne(u => u.sanPham).HasForeignKey<ChiTietSanPham>(a => a.MaCTSP).OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(a => a.hinhAnh).WithOne(u => u.sanPham).HasForeignKey<HinhAnh>(a => a.HinhID).OnDelete(DeleteBehavior.Restrict);
-            });
-            modelBuilder.Entity<NhomSanPham>(entity =>
-            {
-                entity.Property(e => e.ManhomSP).UseIdentityColumn();
-            });
-            modelBuilder.Entity<NhaSanXuat>(entity =>
-            {
-                entity.Property(e => e.MaNSX).UseIdentityColumn();
+                //entity.HasOne(a => a.chiTietSanPham).WithOne(u => u.sanPham).HasForeignKey<ChiTietSanPham>(a => a.MaCTSP).OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne(a => a.hinhAnh).WithOne(u => u.sanPham).HasForeignKey<HinhAnh>(a => a.HinhID).OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<HoaDon>(entity =>
             {
                 entity.Property(e => e.MaHD).UseIdentityColumn();
-                entity.HasOne(e => e.giaoDich).WithOne(u => u.hoaDon).HasForeignKey<GiaoDich>(a => a.MaGD).OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne(e => e.giaoDich).WithOne(u => u.hoaDon).HasForeignKey<GiaoDich>(a => a.MaGD).OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<HinhAnh>(entity =>
             {
-                entity.Property(e => e.HinhID).UseIdentityColumn();      
+                entity.Property(e => e.HinhID).UseIdentityColumn();
+                //entity.HasOne(e => e.sanPham).WithOne(u => u.hinhAnh).HasForeignKey<SanPham>(a => a.HinhID).OnDelete(DeleteBehavior.Cascade);
             });
             modelBuilder.Entity<GiaoDich>(entity =>
             {
                 entity.Property(e => e.MaGD).UseIdentityColumn();
+                entity.HasOne(e => e.hoaDon).WithOne(u => u.giaoDich).HasForeignKey<HoaDon>(a => a.MGD).OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.user).WithMany(u => u.giaoDiches).HasForeignKey(a => a.UserID).OnDelete(DeleteBehavior.Restrict);
-            });
-            modelBuilder.Entity<ChiTietSanPham>(entity =>
-            {
-                entity.Property(e => e.MaCTSP).UseIdentityColumn();
-                entity.HasOne(e => e.NhaSanXuat).WithMany(u => u.chiTietSanPhams).HasForeignKey(a => a.MaNSX).OnDelete(DeleteBehavior.Restrict);
-                entity.HasOne(e => e.NhomSanPham).WithMany(u => u.chiTietSanPhams).HasForeignKey(a => a.ManhomSP).OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<SanPhamInHoaDon>(entity =>
             {

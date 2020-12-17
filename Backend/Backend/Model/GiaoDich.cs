@@ -16,6 +16,7 @@ namespace Backend.Model
         public string TinhTrang { get; set; }
         public string TenCongThanhToan { get; set; }
         public string ChiTietGD { get; set; }
+        public DateTime NgayGD { get; set; }
 
         public HoaDon hoaDon { get; set; }
 

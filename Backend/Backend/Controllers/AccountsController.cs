@@ -41,6 +41,21 @@ namespace Backend.Controllers
             return account;
         }
 
+        //// GET: api/Accounts/Search
+        //[HttpGet]
+        //[Route("Admin")]
+        //public async Task<ActionResult<IEnumerable<Account>>> GetAccountByRole()
+        //{
+        //    var account = await _context.Accounts
+
+        //    if (account == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return account;
+        //}
+
         // PUT: api/Accounts/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

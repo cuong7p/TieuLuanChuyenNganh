@@ -24,7 +24,6 @@ namespace Backend
         {
             services.AddDbContext<ApplicationDbContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:TLCN"]));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-                                        
             services.AddControllers();
             services.AddControllersWithViews()
                    .AddNewtonsoftJson(options =>

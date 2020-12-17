@@ -4,14 +4,16 @@ using Backend.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201211030126_Updated")]
+    partial class Updated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +58,6 @@ namespace Backend.Migrations
                     b.Property<string>("ChiTietGD")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("NgayGD")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("TenCongThanhToan")
                         .HasColumnType("nvarchar(max)");
 
@@ -98,12 +97,7 @@ namespace Backend.Migrations
                     b.Property<string>("TenHinh")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("sanPhamMaSP")
-                        .HasColumnType("int");
-
                     b.HasKey("HinhID");
-
-                    b.HasIndex("sanPhamMaSP");
 
                     b.ToTable("HinhAnhs");
                 });
@@ -118,14 +112,8 @@ namespace Backend.Migrations
                     b.Property<string>("ChiTiet")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DiaChiGiaoHang")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("MGD")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayXN")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("SanPhamInHoaDonMaHD")
                         .HasColumnType("int");
@@ -139,8 +127,8 @@ namespace Backend.Migrations
                     b.Property<string>("TenHD")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TrangThaiHD")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("TrangThaiHD")
+                        .HasColumnType("bit");
 
                     b.HasKey("MaHD");
 
@@ -161,6 +149,9 @@ namespace Backend.Migrations
 
                     b.Property<double>("DonGia")
                         .HasColumnType("float");
+
+                    b.Property<int>("HinhID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Mota")
                         .HasColumnType("nvarchar(max)");
@@ -186,10 +177,10 @@ namespace Backend.Migrations
                     b.Property<string>("TinhTrang")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("urlHinh")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("MaSP");
+
+                    b.HasIndex("HinhID")
+                        .IsUnique();
 
                     b.HasIndex("SanPhamInHoaDonMaSP", "SanPhamInHoaDonMaHD");
 
@@ -230,9 +221,6 @@ namespace Backend.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("urlHinh")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("UserID");
 
                     b.ToTable("Users");
@@ -264,15 +252,6 @@ namespace Backend.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("Backend.Model.HinhAnh", b =>
-                {
-                    b.HasOne("Backend.Model.SanPham", "sanPham")
-                        .WithMany()
-                        .HasForeignKey("sanPhamMaSP");
-
-                    b.Navigation("sanPham");
-                });
-
             modelBuilder.Entity("Backend.Model.HoaDon", b =>
                 {
                     b.HasOne("Backend.Model.GiaoDich", "giaoDich")
@@ -292,9 +271,17 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Model.SanPham", b =>
                 {
+                    b.HasOne("Backend.Model.HinhAnh", "hinhAnh")
+                        .WithOne("sanPham")
+                        .HasForeignKey("Backend.Model.SanPham", "HinhID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Backend.Model.SanPhamInHoaDon", "SanPhamInHoaDon")
                         .WithMany()
                         .HasForeignKey("SanPhamInHoaDonMaSP", "SanPhamInHoaDonMaHD");
+
+                    b.Navigation("hinhAnh");
 
                     b.Navigation("SanPhamInHoaDon");
                 });
@@ -321,6 +308,11 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Model.GiaoDich", b =>
                 {
                     b.Navigation("hoaDon");
+                });
+
+            modelBuilder.Entity("Backend.Model.HinhAnh", b =>
+                {
+                    b.Navigation("sanPham");
                 });
 
             modelBuilder.Entity("Backend.Model.HoaDon", b =>

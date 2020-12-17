@@ -15,7 +15,9 @@ namespace Backend.Model
         public string TenHD { get; set; }
         public int SoluongMua { get; set; }
         public string ChiTiet { get; set; }
-        public bool TrangThaiHD { get; set; }
+        public string TrangThaiHD { get; set; }
+        public DateTime NgayXN { get; set; }
+        public string DiaChiGiaoHang { get; set; }
 
         public int MGD { get; set; }
         public GiaoDich giaoDich { get; set; }
