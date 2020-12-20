@@ -13,8 +13,8 @@ namespace Backend.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MaHD { get; set; }
         public string TenHD { get; set; }
-        public int SoluongMua { get; set; }
-        public string ChiTiet { get; set; }
+        /*public int SoluongMua { get; set; }*/
+        /*public string ChiTiet { get; set; }*/
         public string TrangThaiHD { get; set; }
         public DateTime NgayXN { get; set; }
         public string DiaChiGiaoHang { get; set; }
