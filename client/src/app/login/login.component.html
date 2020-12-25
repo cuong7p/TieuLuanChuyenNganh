@@ -1,0 +1,42 @@
+<!-- log in -->
+<body>
+<div class="mid-class mt-1">
+    <div class="art-right-w3ls">
+       <h2>Sign In and Sign Up</h2>
+       <form (ngSubmit)="login()" #loginForm="ngForm" method="post">
+          <div class="main">
+             <div class="form-left-to-w3l">
+                <input type="text" name="name" placeholder="email" [(ngModel)]="email"
+                [ngModelOptions]="{ standalone: true }" required="">
+             </div>
+             <div class="form-left-to-w3l ">
+                <input type="password" name="password" placeholder="Password" [(ngModel)]="password"
+                [ngModelOptions]="{ standalone: true }" required="">
+                <div class="clear"></div>
+             </div>
+          </div>
+          <div class="left-side-forget">
+             <input type="checkbox" class="checked">
+             <span class="remenber-me">Remember me </span>
+          </div>
+          <div class="right-side-forget">
+             <a href="#" class="for">Forgot password...?</a>
+          </div>
+          <div class="clear"></div>
+          <div class="btnn">
+             <button type="submit">Sign In</button>
+          </div>
+       </form>
+       <div class="w3layouts_more-buttn">
+          <h3>Don't Have an account..?
+             <a routerLink = "/register" >Sign Up Here</a>
+          </h3>
+       </div>      
+    </div>
+    <div class="art-left-w3ls">
+       <h1 class="header-w3ls">
+          ELECTRO STORE
+       </h1>
+    </div>
+ </div>
+</body>

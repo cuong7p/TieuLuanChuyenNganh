@@ -1,0 +1,92 @@
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div  class="col-1"></div>
+      <div class="col-2">
+        <button class="btn btn-success mt-3" type="button" style="margin-bottom: 20px;">
+          <a routerLink="/add-admin" class="text-white">
+            <i class="fa fa-plus-circle"></i>
+            Add Account
+          </a>
+        </button>
+      </div>
+      <div class="col-3">
+        <div class="search-hotel py-2">
+          <h3 class=" mb-3">Search Here</h3>
+          <form action="#" method="post">
+            <input class="border" type="search" placeholder="Product name..." name="search" required="" [(ngModel)]="filterTerm">
+          </form>
+        </div>	
+      </div>
+      <!-- //product right -->
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <h4><span>Admin</span></h4>
+        <div class="table-responsive">
+					<table class="timetable_sub">
+						<thead>
+							<tr>
+								<th>Email</th>
+								<th>Role</th>
+							</tr>
+						</thead>
+						<tbody *ngFor="let data of listaccount | filter:filterTerm | orderBy: 'Admin' | paginate: { itemsPerPage: 10, currentPage: p }">
+							<tr *ngIf="data.role === 'Admin'"  class="rem1">
+								<td class="invert">{{data.email}}</td>
+								<td class="invert">{{data.role}}</td>
+                <td>
+                    <div class="">
+                      <button class="btn btn-danger" (click)="deleteAccount(data.accountID)" type="button">
+                       <i class="fa fa-trash-alt"></i>
+                          Remove
+                      </button>
+                     </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          <div class="mt-2">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+          </div>                 
+				</div>
+			</div>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <h4><span>Shipper</span></h4>
+        <div class="table-responsive">
+					<table class="timetable_sub">
+						<thead>
+							<tr>
+								<th>Email</th>
+								<th>Role</th>
+							</tr>
+						</thead>
+						<tbody *ngFor="let data of listaccount | filter:filterTerm | orderBy: 'Shipper' | paginate: { itemsPerPage: 10, currentPage: p }">
+							<tr *ngIf="data.role === 'Shipper'"  class="rem1">
+								<td class="invert">{{data.email}}</td>
+								<td class="invert">{{data.role}}</td>
+                <td>
+                    <div class="">
+                      <button class="btn btn-danger" (click)="deleteAccount(data.accountID)" type="button">
+                       <i class="fa fa-trash-alt"></i>
+                          Remove
+                      </button>
+                     </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          <div class="mt-2">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+          </div>                 
+				</div>
+			</div>
+    </div>
+  </div>
+
+</body>

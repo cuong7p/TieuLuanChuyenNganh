@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Electro Store</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+	    rel="stylesheet">
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+
+  <!-- js-files -->
+	<!-- jquery -->
+	<script src="../../assets/js/jquery-2.2.3.min.js"></script>
+	<!-- //jquery -->
+
+	<!-- nav smooth scroll -->
+	<script>
+		$(document).ready(function () {
+			$(".dropdown").hover(
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideDown("medium");
+					$(this).toggleClass('open');
+				},
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideUp("medium");
+					$(this).toggleClass('open');
+				}
+			);
+		});
+	</script>
+	<!-- //nav smooth scroll -->
+
+	<!-- popup modal (for location)-->
+	<script src="../../assets/js/jquery.magnific-popup.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.popup-with-zoom-anim').magnificPopup({
+				type: 'inline',
+				fixedContentPos: false,
+				fixedBgPos: true,
+				overflowY: 'auto',
+				closeBtnInside: true,
+				preloader: false,
+				midClick: true,
+				removalDelay: 300,
+				mainClass: 'my-mfp-zoom-in'
+			});
+
+		});
+	</script>
+	<!-- //popup modal (for location)-->
+
+	<!-- cart-js -->
+	<script src="../../assets/js/minicart.js"></script>
+	<script>
+	$(document).ready(function() {  
+		var readURL = function(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+	
+				reader.onload = function (e) {
+					$('.avatar').attr('src', e.target.result);
+				}
+		
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$(".file-upload").on('change', function(){
+			readURL(this);
+		});
+	});
+	</script>
+
+	<!-- //credit-card -->
+	<!-- scroll seller -->
+	<script src="../../assets/js/scroll.js"></script>
+	<!-- //scroll seller -->
+
+	<!-- smoothscroll -->
+	<script src="../../assets/js/SmoothScroll.min.js"></script>
+	<!-- //smoothscroll -->
+
+	<!-- start-smooth-scrolling -->
+	<script src="../../assets/js/easing.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 1000);
+			});
+		});
+	</script>
+	<!-- //end-smooth-scrolling -->
+	<!-- //smooth-scrolling-of-move-up -->
+	<!-- for bootstrap working -->
+	<!--<script src="../../assets/js/bootstrap.js"></script>-->
+	<!-- //for bootstrap working -->
+	<!-- //js-files -->
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<script src="../../assets/js/Chart.min.js"></script>
+	<script src="../../assets/js/moment.min.js"></script>
+	<script src="../../assets/js/tooplate-scripts.js"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AYYcM1803aG0BVoOBMQXcj1xCdY42aEilqnr9cfz78FN9XaCp1zxgqdOYLoPtWm_RyU_YL4BVxf9oXJc&locale=en_US"></script>
+</body>
+</html>

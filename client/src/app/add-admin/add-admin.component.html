@@ -1,0 +1,62 @@
+<div  class="privacy py-sm-5 py-4">
+    <div class="container py-xl-4 py-lg-2">
+        <div class="checkout-left">
+            <div class="address_form_agile mt-sm-5 mt-4">
+                <h4 class="mb-sm-4 mb-3">Add a new Admin</h4>
+                <form (ngSubmit)="createUser()" #AddAdminForm="ngForm" action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+                    <div class="creditly-wrapper wthree, w3_agileits_wrapper">
+                        <div class="information-wrapper">
+                            <div class="first-row">
+                                <div class="controls form-group">
+                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="FirstName" required="" [(ngModel)]="FirstName"
+                                    >
+                                </div>
+                                <div class="controls form-group">
+                                    <input type="text" class="form-control" placeholder="LastName" name="city" required="" [(ngModel)]="LastName"
+                                    >
+                                </div>
+                                <div class="controls form-group">
+                                    <input type="text" class="form-control" placeholder="Phone" name="city" required="" [(ngModel)]="Phone"
+                                    >
+                                </div>
+                                <div class="controls form-group">
+                                    <input type="text" class="form-control" placeholder="Address" name="city" required="" [(ngModel)]="Address"
+                                    >
+                                </div>
+                                <div class="controls form-group">
+                                    <input type="email" class="form-control" placeholder="Email" name="city" required="" [(ngModel)]="Email"
+                                    >
+                                </div>
+                                <div class="controls form-group">
+                                    <input type="password" class="form-control" placeholder="Password" name="city" required="" [(ngModel)]="Password"
+                                    >
+                                </div>
+                                <div class="controls form-group row">
+                                    <div class="col-sm-9 row" style="padding-left: 4%;">
+                                        <div class="form-check form-check-inline">
+                                            <input style="width: 10px;" class="form-check-input mt-2" type="radio" name="Role" id="admin" [(ngModel)]="Role"
+                                                value="Admin">
+                                            <label class="form-check-label" for="inlineRadio1">Admin</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input style="width: 10px;" class="form-check-input mt-2" type="radio" name="Role" id="shipper" [(ngModel)]="Role"
+                                                value="Shipper">
+                                            <label class="form-check-label" for="inlineRadio2">Shipper</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-right-basket">
+                        <button type="submit">
+                        <a>Confirm
+                            <span class="fa fa-save"></span>
+                        </a>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

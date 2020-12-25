@@ -1,0 +1,99 @@
+
+<div class="container mt-5">
+    <p style="font-size: 30px; font-weight: bold;">UPDATE PRODUCT</p>
+    <div class="row ">
+        <div *ngFor="let detail of details" class="col-8 ">
+            <form (ngSubmit)="Update(detail)" #updateproductform="ngForm" class="border border-dark" style="padding: 2% 2% 2% 4%;">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">PRODUCT NAME</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="productName" value="" placeholder="" name = "productName" [(ngModel)]="detail.tenSP" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">PRICE</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="unitPrice" name= "unitPrice" [(ngModel)]="detail.donGia" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">UNITS IN STOCK</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="unitInStock" name = "unitInStock" [(ngModel)]="detail.soLuong"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">DESCRIPTION</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="description" style="height: 200%;" name="description" [(ngModel)]="detail.mota"/>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">MANUFACTURER</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="manufacturer" name ="manufacturer" [(ngModel)]="detail.tenNSX" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">CATEGORY</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="groupId" name="productGroupId" [(ngModel)]="detail.tennhomSP"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label">CONDITION</label>
+                  <div class="col-sm-9 row" style="padding-left: 4%;">
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="productCondition" id="newCondition" [(ngModel)]="detail.tinhTrang"
+                              value="New">
+                          <label class="form-check-label" for="inlineRadio1">New</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="productCondition" id="oldCondition" [(ngModel)]="detail.tinhTrang"
+                              value="Old">
+                          <label class="form-check-label" for="inlineRadio2">Old</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="productCondition" id="refurbishedCondition" [(ngModel)]="detail.tinhTrang"
+                              value="Refurbished">
+                          <label class="form-check-label" for="inlineRadio3">Refurbished</label>
+                      </div>
+                  </div>
+              </div>
+                <!-- <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-3 col-form-label">IMAGE FILE</label>
+                    <div class="col-sm-9">
+                        <div class="custom-file">
+                                <input type="file" class="custom-file-input" (change)="onFileChanged($event)">
+                            <label class="custom-file-label" for="fileImage">Choose file</label>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="d-flex justify-content-start">
+                    <button type="submit"  class="btn btn-primary mx-1">
+                        ADD PRODUCT</button>
+                </div>
+            </form>
+        </div>
+        <div *ngFor="let detail of details" class="col-4">
+            <div *ngIf="urlHinhNull(detail); else els" class="text-center">
+                <img src = "{{detail.urlHinh}}" class="avatar img-circle img-thumbnail" alt="avatar"><br>
+                <label for="phone"><h4>Change Image</h4></label><br>
+                <img [src] = "imgURL" class="avatar img-circle img-thumbnail" *ngIf="imgURL" alt="avatar">
+                <input type="file" class="text-center center-block" (change)="onFileChanged($event)">
+            </div>
+              <ng-template #els>
+                <div class="text-center">
+                    <label for="phone"><h4>Change Image</h4></label>
+                    <img [src] = "imgURL" class="avatar img-circle img-thumbnail" *ngIf="imgURL" alt="avatar">
+                    <input type="file" class="text-center center-block" (change)="onFileChanged($event)">
+                </div>
+              </ng-template>
+        </div>
+        <!-- <div class="col-4">
+          <img [src]="imgURL" height="200" *ngIf="imgURL">
+        </div> -->
+    </div>
+  </div>

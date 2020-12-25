@@ -1,0 +1,52 @@
+<!-- log in -->
+<body>
+    <div class="mid-class">
+        <div class="art-right-w3ls">
+           <h2>Sign In and Sign Up</h2>
+           <form (ngSubmit)="createUser()" #RegisterForm="ngForm" method="post">
+             <div class="form-left-to-w3l">
+                <input type="text" name="FirstName" placeholder="FirstName" [(ngModel)]="FirstName"
+                [ngModelOptions]="{ standalone: true }" required="">
+             </div>
+             <div class="form-left-to-w3l">
+               <input type="text" name="LastName" placeholder="LastName" [(ngModel)]="LastName"
+               [ngModelOptions]="{ standalone: true }" required="">
+             </div>
+             <div class="form-left-to-w3l">
+                <input type="text" name="Phone" placeholder="Phone" [(ngModel)]="Phone"
+                [ngModelOptions]="{ standalone: true }" required="">
+             </div>
+             <div class="form-left-to-w3l">
+               <input type="text" name="Address" placeholder="Address" [(ngModel)]="Address"
+               [ngModelOptions]="{ standalone: true }" required="">
+             </div>
+             <div class="form-left-to-w3l">
+                <input type="email" name="email" placeholder="Email" [(ngModel)]="Email"
+                [ngModelOptions]="{ standalone: true }" required="">
+             </div>
+             <div class="form-left-to-w3l">
+                <input type="password" name="password" placeholder="Password" [(ngModel)]="Password"
+                [ngModelOptions]="{ standalone: true }" required="">
+             </div>
+             <div class="form-left-to-w3l ">
+                <input type="password" name="password" placeholder="Confirm Password" required="">
+             </div>
+             <div class="btnn">
+                <button type="submit">Sign Up</button>
+                <br>
+             </div>
+           </form>
+           <div class="w3layouts_more-buttn">
+              <h3>Have an account..?
+                 <a routerLink = "/login">Sign In Here
+                 </a>
+              </h3>
+           </div>           
+        </div>
+        <div class="art-left-w3ls">
+           <h1 class="header-w3ls">
+              ELECTRO STORE
+           </h1>
+        </div>
+     </div>
+    </body>

@@ -1,0 +1,58 @@
+<body>
+    <div class="invoice-box mt-5">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="../../assets/images/paypal.png" style="width:100%; max-width:300px;">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr *ngFor="let data of hoadon" class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>Name: 
+                                {{data.tenHD}}<br>
+                                Address: 
+                                {{data.diaChiGiaoHang}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="heading">
+                <td>
+                    Item
+                </td>
+                
+                <td>
+                    Price
+                </td>
+            </tr>
+            
+            <tr *ngFor="let data of sanpham"  class="item">
+                <td>
+                   {{data.tenSP}}
+                </td>
+                
+                <td>
+                    {{data.donGia}}
+                </td>
+            </tr>
+            
+            <tr *ngFor="let data of hoadon" class="total">
+                <td>
+                   Total: {{data.tongdon}}
+                </td>
+            </tr>
+            <div class="btn btn-primary" (click)="back()">Back</div>
+        </table>
+    </div>
+</body>
