@@ -37,13 +37,13 @@
                 </td>
             </tr>
             
-            <tr *ngFor="let data of sanpham"  class="item">
+            <tr *ngFor="let data of sanphaminhoadon"  class="item">
                 <td>
-                   {{data.tenSP}}
+                   {{data.sanPham.tenSP}}
                 </td>
                 
                 <td>
-                    {{data.donGia}}
+                    {{data.sanPham.donGia}}
                 </td>
             </tr>
             
@@ -52,7 +52,7 @@
                    Total: {{data.tongdon}}
                 </td>
             </tr>
-            <div class="btn btn-primary" (click)="back()">Back</div>
         </table>
+        <div class="btn btn-primary" (click)="back()">Back</div>
     </div>
 </body>

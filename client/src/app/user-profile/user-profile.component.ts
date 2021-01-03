@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from './userProfile.service';
 import { AuthenticationService } from '../login/authentication.service';
 import { RegisterService } from '../register/register.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from './model';
 import { Account } from '../login/model';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -49,8 +51,8 @@ export class UserProfileComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event2) => {
-      this.imgURL = reader.result;
-      console.log(this.imgURL);
+        this.imgURL = reader.result;
+        console.log(this.imgURL);
       };
     }
     else {
@@ -58,12 +60,30 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line:typedef
+  onSubmit = async (u: User) => {
+    // this.isSubmitted = true;
+    const filePath = `storage/${this.selectedFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    console.log(filePath);
+    const fileRef = this.storage.ref(filePath);
+    console.log(fileRef);
+    this.storage.upload(filePath, this.selectedFile).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.imgURL = url;
+          console.log(this.imgURL);
+          this.Update(u);
+        });
+      })
+    ).subscribe();
+  }
+
   constructor(
+    private storage: AngularFireStorage,
     private userProfileService: UserProfileService,
     private authenticationService: AuthenticationService,
     private registerService: RegisterService
     ) { }
-  // id!: Int32Array;
   public getUserByID = async () => {
     const id = this.authenticationService.currentUserValue.userID;
     this.user = await this.userProfileService.getuserbyid(id) as User[];
@@ -98,15 +118,6 @@ export class UserProfileComponent implements OnInit {
     const result = this.userProfileService.updateUser(id, user);
     console.log(result);
     alert('Change Profile Success');
-    // const id2 = this.authenticationService.currentUserValue.accountID;
-    // console.log(this.Email, this.Password);
-    // const account = new Account();
-    // account.email = this.Email;
-    // account.password = this.Password;
-    // account.role = this.authenticationService.currentUserValue.role;
-    // account.userID = id;
-    // console.log(account);
-    // const result2 = this.registerService.updateAccount(id2, account);
   }
   // tslint:disable-next-line:typedef
   urlHinhNull(user: User) {

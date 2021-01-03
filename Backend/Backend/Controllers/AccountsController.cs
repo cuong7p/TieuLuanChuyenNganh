@@ -41,20 +41,29 @@ namespace Backend.Controllers
             return account;
         }
 
-        //// GET: api/Accounts/Search
-        //[HttpGet]
-        //[Route("Admin")]
-        //public async Task<ActionResult<IEnumerable<Account>>> GetAccountByRole()
-        //{
-        //    var account = await _context.Accounts
+        [HttpGet]
+        [Route("Khach")]
+        public async Task<ActionResult<IEnumerable<Account>>> GetSanPhamKhach()
+        {
+            var account = await _context.Accounts.Where(i => i.Role == "Khách").ToListAsync();
+            return account;
+        }
 
-        //    if (account == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpGet]
+        [Route("Admin")]
+        public async Task<ActionResult<IEnumerable<Account>>> GetSanPhamAdmin()
+        {
+            var account = await _context.Accounts.Where(i => i.Role == "Admin").ToListAsync();
+            return account;
+        }
 
-        //    return account;
-        //}
+        [HttpGet]
+        [Route("Shipper")]
+        public async Task<ActionResult<IEnumerable<Account>>> GetSanPhamShipper()
+        {
+            var account = await _context.Accounts.Where(i => i.Role == "Shipper").ToListAsync();
+            return account;
+        }
 
         // PUT: api/Accounts/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for

@@ -26,7 +26,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PaypalComponent } from './paypal/paypal.component';
 import { OrderModule } from 'ngx-order-pipe';
@@ -34,6 +34,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { ShipperDashboardComponent } from './shipper-dashboard/shipper-dashboard.component';
 import { HoadonDetailComponent } from './hoadon-detail/hoadon-detail.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { HoadonDetailComponent } from './hoadon-detail/hoadon-detail.component';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     NgxPayPalModule,
-    OrderModule
+    OrderModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

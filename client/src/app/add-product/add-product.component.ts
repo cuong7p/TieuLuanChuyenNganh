@@ -3,6 +3,10 @@ import { AddProductService } from './addProduct.services';
 import { Router } from '@angular/router';
 import { Product} from './model';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-add-product',
@@ -20,6 +24,12 @@ export class AddProductComponent implements OnInit {
   TinhTrang = '';
   urlHinh = '';
 
+  formTemplate = new FormGroup({
+    caption: new FormControl('', Validators.required),
+    category: new FormControl(''),
+    imageUrl: new FormControl('', Validators.required)
+  });
+
   public selectedFile: any;
   public event1: any;
   imgURL: any;
@@ -27,45 +37,47 @@ export class AddProductComponent implements OnInit {
   base64Data: any;
   convertedImage: any;
   receiveProduct: any;
-  // tslint:disable-next-line:typedef
-    onFileChanged(event: any){
-    console.log(event);
-    this.selectedFile = (event.target.files[0]);
-    const reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (event2) => {
-      this.imgURL = reader.result;
-      console.log(this.imgURL);
-    };
-  }
+  isSubmitted!: boolean;
 
   constructor(
+  private storage: AngularFireStorage,
   private addProductService: AddProductService,
   private router: Router,
   // tslint:disable-next-line:no-shadowed-variable
-  private HttpClient: HttpClient) { }
+  private HttpClient: HttpClient) {}
+
+  ngOnInit(): void {
+    this.imgURL = '../../assets/images/new_image.jpg';
+  }
 
   // tslint:disable-next-line:typedef
-  onUpload(){
-    const uploadData = new FormData();
-    uploadData.append('urlHinh', this.selectedFile, this.selectedFile.name);
-    console.log(this.selectedFile.name);
-    this.HttpClient.post<any>('https://localhost:44372/api/SanPhams', uploadData)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.receivedImage = res;
-          this.base64Data = this.receivedImage.pic;
-          this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          console.log(this.convertedImage);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+  onFileChanged(event: any){
+    // console.log(event);
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imgURL = e.target.result;
+      console.log(this.imgURL);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    this.selectedFile = (event.target.files[0]);
   }
-  ngOnInit(): void {
-    this.imgURL = 'http://ssl.gstatic.com/accounts/ui/avatar_2x.png';
+
+  // tslint:disable-next-line:typedef
+  onSubmit = async () => {
+    // this.isSubmitted = true;
+    const filePath = `storage/${this.selectedFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    console.log(filePath);
+    const fileRef = this.storage.ref(filePath);
+    console.log(fileRef);
+    this.storage.upload(filePath, this.selectedFile).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.imgURL = url;
+          console.log(this.imgURL);
+          this.addNewProduct();
+        });
+      })
+    ).subscribe();
   }
 
   // tslint:disable-next-line:typedef
@@ -83,7 +95,7 @@ export class AddProductComponent implements OnInit {
       console.log(this.imgURL);
       // console.log(product);
       // this.onUpload();
-      const result = this.addProductService.addProduct(product) as any;
+      const result = await this.addProductService.addProduct(product) as any;
       alert('Add Product Success');
       this.router.navigateByUrl('/list-product');
       // console.log(result);

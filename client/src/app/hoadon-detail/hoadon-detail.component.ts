@@ -3,6 +3,7 @@ import { HoadonDetailService} from './hoadonDetail.service';
 import { Router } from '@angular/router';
 import { Hoadon } from './model';
 import { Product } from './model';
+import { SanphamInHodon } from './model';
 
 @Component({
   selector: 'app-hoadon-detail',
@@ -20,6 +21,7 @@ export class HoadonDetailComponent implements OnInit, AfterViewInit {
 
   hoadon: Hoadon[] = [];
   sanpham: Product[] = [];
+  sanphaminhoadon: SanphamInHodon[] = [];
   filterTerm!: string;
   p = 1;
 
@@ -33,7 +35,6 @@ export class HoadonDetailComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.showSanpham();
-
   }
 
   showHoadon = async () => {
@@ -42,8 +43,8 @@ export class HoadonDetailComponent implements OnInit, AfterViewInit {
   }
 
   showSanpham = async () => {
-    this.sanpham = await this.hoadondetailservice.showSanpham() as Product[];
-    console.log(this.sanpham);
+    this.sanphaminhoadon = await this.hoadondetailservice.showSanpham() as SanphamInHodon[];
+    console.log(this.sanphaminhoadon);
   }
 
   back = () => {

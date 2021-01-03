@@ -58,26 +58,6 @@ export class ShipperDashboardComponent implements OnInit {
   }
 
   getHoadonDetail = async (hoadon: Hoadon) => {
-
-    const sanphaminhoadon = await this.hoadondetailservice.getSanphamInHoadon() as SanphamInHodon[];
-    console.log(sanphaminhoadon);
-    if (sanphaminhoadon.length > 0)
-    {
-      if (await this.hoadondetailservice.checkLocalStorage2() === true)
-      {
-        localStorage.removeItem('sanphamhoadon');
-      }
-      const sanpham = JSON.parse(localStorage.getItem('sanphamhoadon') || '[]');
-      sanphaminhoadon.forEach(async (el: any) => {
-        if (el.maHD === hoadon.maHD){
-          this.result = await this.hoadondetailservice.getProductDetail(el.maSP);
-          sanpham.push(this.result);
-          console.log(sanpham);
-          localStorage.setItem('sanphamhoadon', JSON.stringify(sanpham));
-        }
-      });
-    }
-
     const hoadondetail = await this.hoadondetailservice.getHoadonByID(hoadon.maHD) as Hoadon[];
     if (await this.hoadondetailservice.checkLocalStorage() === true)
     {
@@ -86,6 +66,51 @@ export class ShipperDashboardComponent implements OnInit {
     const detail = JSON.parse(localStorage.getItem('hoadondetail') || '[]');
     detail.push(hoadondetail);
     localStorage.setItem('hoadondetail', JSON.stringify(detail));
+  }
+
+  getSanphamInHoadon = async (hoadon: Hoadon) => {
+    this.getHoadonDetail(hoadon);
+    const sanphaminhoadon = await this.hoadondetailservice.getSanphamInHoadonByID(hoadon.maHD) as SanphamInHodon[];
+    if (sanphaminhoadon.length > 0)
+    {
+      if (await this.hoadondetailservice.checkLocalStorage2() === true)
+      {
+        localStorage.removeItem('sanphamhoadon');
+      }
+      localStorage.setItem('sanphamhoadon', JSON.stringify(sanphaminhoadon));
+    }
     this.router.navigateByUrl('/hoadon-detail');
   }
+
+  // getHoadonDetail = async (hoadon: Hoadon) => {
+
+  //   const sanphaminhoadon = await this.hoadondetailservice.getSanphamInHoadon() as SanphamInHodon[];
+  //   console.log(sanphaminhoadon);
+  //   if (sanphaminhoadon.length > 0)
+  //   {
+  //     if (await this.hoadondetailservice.checkLocalStorage2() === true)
+  //     {
+  //       localStorage.removeItem('sanphamhoadon');
+  //     }
+  //     const sanpham = JSON.parse(localStorage.getItem('sanphamhoadon') || '[]');
+  //     sanphaminhoadon.forEach(async (el: any) => {
+  //       if (el.maHD === hoadon.maHD){
+  //         this.result = await this.hoadondetailservice.getProductDetail(el.maSP);
+  //         sanpham.push(this.result);
+  //         console.log(sanpham);
+  //         localStorage.setItem('sanphamhoadon', JSON.stringify(sanpham));
+  //       }
+  //     });
+  //   }
+
+  //   const hoadondetail = await this.hoadondetailservice.getHoadonByID(hoadon.maHD) as Hoadon[];
+  //   if (await this.hoadondetailservice.checkLocalStorage() === true)
+  //   {
+  //     localStorage.removeItem('hoadondetail');
+  //   }
+  //   const detail = JSON.parse(localStorage.getItem('hoadondetail') || '[]');
+  //   detail.push(hoadondetail);
+  //   localStorage.setItem('hoadondetail', JSON.stringify(detail));
+  //   this.router.navigateByUrl('/hoadon-detail');
+  // }
 }

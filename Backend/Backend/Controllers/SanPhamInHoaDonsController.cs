@@ -27,7 +27,7 @@ namespace Backend.Controllers
             return await _context.SanPhamInHoaDons.ToListAsync();
         }
 
-        // GET: api/SanPhamInHoaDons/5
+        /*// GET: api/SanPhamInHoaDons/5
         [HttpGet("{id}")]
         public async Task<ActionResult<SanPhamInHoaDon>> GetSanPhamInHoaDon(int id)
         {
@@ -39,6 +39,14 @@ namespace Backend.Controllers
             }
 
             return sanPhamInHoaDon;
+        }*/
+
+        [HttpGet]
+        [Route("SanphamInHoadon/{id}")]
+        public async Task<ActionResult<IEnumerable<SanPhamInHoaDon>>> GetSanPhamInHoaDon(int id)
+        {
+            var hoadon = await _context.SanPhamInHoaDons.Include(i => i.SanPham).Where(a => a.MaHD == id).Where(a => a.MaSP == a.SanPham.MaSP).ToListAsync();
+            return hoadon;
         }
 
         // PUT: api/SanPhamInHoaDons/5
@@ -119,5 +127,7 @@ namespace Backend.Controllers
         {
             return _context.SanPhamInHoaDons.Any(e => e.MaSP == id);
         }
+
+
     }
 }

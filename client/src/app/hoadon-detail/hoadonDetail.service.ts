@@ -48,6 +48,17 @@ export class HoadonDetailService {
         }
     }
 
+    public getSanphamInHoadonByID = async (id: any) => {
+        try {
+            const loginUrl = `${this.urlAPI}/api/SanPhamInHoaDons/SanphamInHoadon/${id}`;
+            return await this.http.get(loginUrl).toPromise();
+        }
+        catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+
     public checkLocalStorage = async () => {
         if (localStorage.getItem('hoadondetail') !== null){
             return await true;

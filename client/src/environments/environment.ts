@@ -7,6 +7,7 @@ export const environment = {
   firebaseConfig: {
     apiKey: 'AIzaSyAlpJAS3XKcdGfd3ATR7q6-xInOLtzwFyI',
     authDomain: 'tlcn-77beb.firebaseapp.com',
+    // databaseURL: 'https://tlcn-77beb.firebaseio.com',
     projectId: 'tlcn-77beb',
     storageBucket: 'tlcn-77beb.appspot.com',
     messagingSenderId: '256808555524',

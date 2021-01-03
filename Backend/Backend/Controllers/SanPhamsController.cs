@@ -40,7 +40,39 @@ namespace Backend.Controllers
 
             return sanPham;
         }
-        
+
+        [HttpGet]
+        [Route("SanphamInHoadon/{id}")]
+        public async Task<ActionResult<IEnumerable<SanPham>>> GetSanPhamss(int id)
+        {
+            var hoadon = await _context.SanPhams.Include(i => i.SanPhamInHoaDon).Where(a => a.MaSP == 10).ToListAsync();
+            return hoadon;
+        }
+
+        [HttpGet]
+        [Route("Phone")]
+        public async Task<ActionResult<IEnumerable<SanPham>>> GetSanPhamPhone()
+        {
+            var sanpham = await _context.SanPhams.Where(i => i.TennhomSP == "PHONE").ToListAsync();
+            return sanpham;
+        }
+
+        [HttpGet]
+        [Route("Audio")]
+        public async Task<ActionResult<IEnumerable<SanPham>>> GetSanPhamAudio()
+        {
+            var sanpham = await _context.SanPhams.Where(i => i.TennhomSP == "Audio").ToListAsync();
+            return sanpham;
+        }
+
+        [HttpGet]
+        [Route("APPLIANCE")]
+        public async Task<ActionResult<IEnumerable<SanPham>>> GetSanPhamAPPLIANCE()
+        {
+            var sanpham = await _context.SanPhams.Where(i => i.TennhomSP == "APPLIANCE").ToListAsync();
+            return sanpham;
+        }
+
         // PUT: api/SanPhams/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
