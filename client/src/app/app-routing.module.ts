@@ -15,6 +15,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { ShipperDashboardComponent } from './shipper-dashboard/shipper-dashboard.component';
 import { HoadonDetailComponent } from './hoadon-detail/hoadon-detail.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,10 @@ const routes: Routes = [
   {
     path : 'hoadon-detail',
     component: HoadonDetailComponent
+  },
+  {
+    path : 'search',
+    component : SearchComponent
   }
 ];
 

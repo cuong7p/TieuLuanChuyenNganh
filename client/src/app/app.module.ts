@@ -35,6 +35,7 @@ import { AddAdminComponent } from './add-admin/add-admin.component';
 import { ShipperDashboardComponent } from './shipper-dashboard/shipper-dashboard.component';
 import { HoadonDetailComponent } from './hoadon-detail/hoadon-detail.component';
 import { ChartsModule } from 'ng2-charts';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ChartsModule } from 'ng2-charts';
     DashboardAdminComponent,
     AddAdminComponent,
     ShipperDashboardComponent,
-    HoadonDetailComponent
+    HoadonDetailComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import { ChartsModule } from 'ng2-charts';
       {path : 'dashboard-admin', component: DashboardAdminComponent},
       {path : 'add-admin', component: AddAdminComponent},
       {path : 'shipper-dashboard', component: ShipperDashboardComponent},
-      {path : 'hoadon-detail', component: HoadonDetailComponent}
+      {path : 'hoadon-detail', component: HoadonDetailComponent},
+      {path : 'search', component : SearchComponent}
     ]),
     FormsModule,
     HttpClientModule,

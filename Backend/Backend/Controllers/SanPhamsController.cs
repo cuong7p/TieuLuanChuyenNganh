@@ -73,6 +73,18 @@ namespace Backend.Controllers
             return sanpham;
         }
 
+        [HttpGet]
+        [Route("Search/{name}")]
+        public async Task<ActionResult<IEnumerable<SanPham>>> GetSanPhamName(string name)
+        {
+            var sanpham = await _context.SanPhams.Where(i => i.TenSP.ToLower().Contains(name.ToLower()) || i.TenNSX.ToLower().Contains(name.ToLower()) || i.TennhomSP.ToLower().Contains(name.ToLower())).ToListAsync();
+            if(sanpham == null)
+            {
+                return NotFound();
+            }
+            return sanpham;
+        }
+
         // PUT: api/SanPhams/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

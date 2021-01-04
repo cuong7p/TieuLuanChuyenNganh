@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../login/authentication.service';
+import { Product } from '../product/model';
+import { ProductService } from '../product/product.service';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +20,12 @@ import { AuthenticationService } from '../login/authentication.service';
 })
 export class HeaderComponent implements OnInit {
 
+  listSearch: Product[] = [];
+  name!: string;
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
+    public productService: ProductService
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +78,20 @@ export class HeaderComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  getSearch = async () => {
+    console.log(this.name);
+    this.listSearch = await this.productService.getSearch(this.name) as Product[];
+    console.log(this.listSearch);
+    if (await this.productService.checkLocalStorage() === true)
+    {
+      localStorage.removeItem('Search');
+    }
+    const productSearch = JSON.parse(localStorage.getItem('Search') || '[]');
+    // productSearch.push(this.listSearch);
+    localStorage.setItem('Search', JSON.stringify(this.listSearch));
+    this.router.navigateByUrl('/search');
   }
 
   public onLogout = () => {
