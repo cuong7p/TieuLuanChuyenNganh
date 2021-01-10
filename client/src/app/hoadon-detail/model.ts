@@ -17,7 +17,7 @@ export class Hoadon{
     trangthaiHD!: string;
     ngayXN!: string;
     diaChiGiaoHang!: string;
-    tongdon!: Int32Array;
+    tongdon!: number;
     mGD!: Int32Array;
 }
 
@@ -33,4 +33,6 @@ export class SanphamInHodon{
     maHD!: Int32Array;
     maSp!: Int32Array;
     sanPham!: Product;
+    soluong!: number;
+    donGia!: number;
 }

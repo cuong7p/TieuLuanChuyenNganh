@@ -26,12 +26,13 @@
                     </table>
                 </td>
             </tr>
-            
             <tr class="heading">
                 <td>
                     Item
                 </td>
-                
+                <td>
+                    Quantity
+                </td>
                 <td>
                     Price
                 </td>
@@ -41,15 +42,17 @@
                 <td>
                    {{data.sanPham.tenSP}}
                 </td>
-                
                 <td>
-                    {{data.sanPham.donGia}}
+                    x{{data.soluong}}
+                </td>
+                <td>
+                    {{data.donGia | currency}}
                 </td>
             </tr>
             
             <tr *ngFor="let data of hoadon" class="total">
                 <td>
-                   Total: {{data.tongdon}}
+                   Total: {{data.tongdon | currency}}USD
                 </td>
             </tr>
         </table>

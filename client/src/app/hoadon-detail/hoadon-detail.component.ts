@@ -48,7 +48,13 @@ export class HoadonDetailComponent implements OnInit, AfterViewInit {
   }
 
   back = () => {
+    if (localStorage.getItem('hoadondetailadmin') !== null)
+    {
+      this.router.navigateByUrl('/dashboard');
+    }
+    else{
     this.router.navigateByUrl('/shipper-dashboard');
+    }
   }
 
 }

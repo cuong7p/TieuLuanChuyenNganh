@@ -73,6 +73,14 @@ namespace Backend.Controllers
             return NoContent();
         }
 
+        [HttpGet]
+        [Route("hoadon/{id}")]
+        public async Task<ActionResult<IEnumerable<GiaoDich>>> GetSanPhamInHoaDon(int id)
+        {
+            var hoadon = await _context.GiaoDiches.Include(i => i.hoaDon).Where(a => a.UserID == id && a.hoaDon.MGD == a.MaGD).ToListAsync();
+            return hoadon;
+        }
+
         // POST: api/GiaoDiches
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

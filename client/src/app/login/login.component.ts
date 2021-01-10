@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('password', data.password);
     localStorage.setItem('isLogined', data.isLogined = 'true');
     console.log('login Success');
+    alert('Login Success');
     if (this.authenticationService.currentUserValue.role === 'Admin')
     {
       this.router.navigateByUrl('/dashboard');
@@ -44,9 +45,13 @@ export class LoginComponent implements OnInit {
     }
     } else{
     console.log('login fail');
+    alert('Login Fail');
     }
     },
-    (err) => console.error(err)
+    (err) => {
+      console.error(err);
+      alert('Login Fail');
+    }
     );
   }
 

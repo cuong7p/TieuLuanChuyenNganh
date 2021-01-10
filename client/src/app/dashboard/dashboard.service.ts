@@ -23,9 +23,31 @@ export class DashboardService{
         }
     }
 
+    public getGiaodichByUser = async (id: any) => {
+        try {
+            const loginUrl = `${this.urlAPI}/api/GiaoDiches/hoadon/${id}`;
+            return await this.http.get(loginUrl).toPromise();
+        }
+        catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+
     public getListHoadon = async () => {
         try {
             const loginUrl = `${this.urlAPI}/api/HoaDons`;
+            return await this.http.get(loginUrl).toPromise();
+        }
+        catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+
+    public getHoadonByID = async (id: any) => {
+        try {
+            const loginUrl = `${this.urlAPI}/api/HoaDons/${id}`;
             return await this.http.get(loginUrl).toPromise();
         }
         catch (error) {

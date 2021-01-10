@@ -32,4 +32,6 @@ export class Giaodich{
 export class SanphamInHodon{
     maHD!: Int32Array;
     maSp!: Int32Array;
+    soluong!: Int32Array;
+    donGia!: Int32Array;
 }

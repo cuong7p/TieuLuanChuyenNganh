@@ -63,6 +63,8 @@
                             <th>Address</th>
                             <th>status</th>
                             <th>Day Confirm</th>
+                            <th>Confirm</th>
+                            <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,6 +74,20 @@
                             <td>{{hoadon.diaChiGiaoHang}}</td>
                             <td>{{hoadon.trangThaiHD}}</td>
                             <td>{{hoadon.ngayXN}}</td>
+                            <td>
+                                <button class="btn btn-success" (click)="XacnhanHoadon(hoadon)" type="button">
+                                    <i class="fa fa-save"></i>
+                                    Confirm
+                                </button>
+                            </td>
+                            <td>
+                                <div class="">
+                                  <button (click)="getSanphamInHoadon(hoadon)" class="btn btn-primary" type="button" style="margin-right: 1%;">
+                                    <i class="fa fa-info"></i>
+                                    Details
+                                  </button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table> 

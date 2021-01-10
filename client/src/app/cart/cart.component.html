@@ -32,7 +32,7 @@
 									{{cart.quantity}}
 								</td>
 								<td class="invert">{{cart.tenSP}}</td>
-								<td class="invert">{{cart.donGia}} đ</td>
+								<td class="invert">{{cart.donGia}} USD</td>
 								<td class="invert">
 									<div class="rem mr-4">
 										<div class="close1" (click)="removeOneProduct(cart.maSP)"><i class="fa fa-trash"></i> </div>
@@ -43,7 +43,7 @@
                                 <td></td>
                                 <td></td>
                                 <td><b>Grand Total:</b></td>
-                                <td>{{total | currency}} đ</td>
+                                <td>{{total | currency}} USD</td>
                                 <td></td>
                               </tr>
                         </tbody>
@@ -58,22 +58,19 @@
 							<div class="information-wrapper">
 								<div class="first-row">
 									<div class="controls form-group">
-										<input class="billing-address-name form-control" type="text" name="name" placeholder="Full Name" required="" [(ngModel)]="tenHD"
-										[ngModelOptions]="{ standalone: true }">
+										<input class="billing-address-name form-control" type="text" name="name" placeholder="Recipient's name" required="" [(ngModel)]="tenHD"
+										[ngModelOptions]="{ standalone: true }" #name='ngModel'>
+										<div *ngIf="name.invalid && (name.dirty || name.touched)"
+										class="alert alert-danger">Must not empty
+									    </div>
 									</div>
 									<div class="controls form-group">
-										<input type="text" class="form-control" placeholder="Town/City" name="city" required="" [(ngModel)]="diachigiaohang"
-										[ngModelOptions]="{ standalone: true }">
+										<input type="text" class="form-control" placeholder="Delivery address" name="city" required="" [(ngModel)]="diachigiaohang"
+										[ngModelOptions]="{ standalone: true }" #diachi='ngModel'>
+										<div *ngIf="diachi.invalid && (diachi.dirty || diachi.touched)"
+										class="alert alert-danger">Must not empty
+									    </div>
 									</div>
-									<!-- <div class="controls form-group">
-										<select class="option-w3ls">
-											<option>Select Address type</option>
-											<option>Office</option>
-											<option>Home</option>
-											<option>Commercial</option>
-
-										</select>
-									</div> -->
 								</div>
 							</div>
 						</div>

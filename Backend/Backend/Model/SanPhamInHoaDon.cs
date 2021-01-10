@@ -11,7 +11,8 @@ namespace Backend.Model
         [Key]
         public int MaHD { get; set; }
         public HoaDon hoaDon { get; set; }
-       
+        public int soluong { get; set; }
+        public double DonGia { get; set; }
         public int MaSP { get; set; }
         public SanPham SanPham { get; set; }     
 

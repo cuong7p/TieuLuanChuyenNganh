@@ -96,12 +96,15 @@ export class CartComponent implements OnInit, AfterViewInit {
     if (cart.length > 0) {
       cart.forEach((item: any) => {
         sanphaminhoadon.maSp = item.maSP;
+        sanphaminhoadon.soluong = item.quantity;
+        sanphaminhoadon.donGia = item.donGia;
         this.spinhoadon = this.productservice.addSanphamInHoadon(sanphaminhoadon);
         return;
       });
     } else {
       return;
     }
+    alert('Payment Success');
     this.router.navigateByUrl('/paypal');
   }
 }

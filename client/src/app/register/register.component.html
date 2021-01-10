@@ -6,11 +6,17 @@
            <form (ngSubmit)="createUser()" #RegisterForm="ngForm" method="post">
              <div class="form-left-to-w3l">
                 <input type="text" name="FirstName" placeholder="FirstName" [(ngModel)]="FirstName"
-                [ngModelOptions]="{ standalone: true }" required="">
+                [ngModelOptions]="{ standalone: true }" #fname='ngModel' required="">
+             </div>
+             <div *ngIf="fname.invalid && (fname.dirty || fname.touched)"
+                  class="alert alert-danger">Must not empty
              </div>
              <div class="form-left-to-w3l">
                <input type="text" name="LastName" placeholder="LastName" [(ngModel)]="LastName"
-               [ngModelOptions]="{ standalone: true }" required="">
+               [ngModelOptions]="{ standalone: true }" #lname='ngModel' required="">
+             </div>
+             <div *ngIf="lname.invalid && (lname.dirty || lname.touched)"
+                  class="alert alert-danger">Must not empty
              </div>
              <div class="form-left-to-w3l">
                 <input type="text" name="Phone" placeholder="Phone" [(ngModel)]="Phone"
@@ -22,11 +28,17 @@
              </div>
              <div class="form-left-to-w3l">
                 <input type="email" name="email" placeholder="Email" [(ngModel)]="Email"
-                [ngModelOptions]="{ standalone: true }" required="">
+                [ngModelOptions]="{ standalone: true }" #email='ngModel' required="">
+             </div>
+             <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                  class="alert alert-danger">Must not empty
              </div>
              <div class="form-left-to-w3l">
                 <input type="password" name="password" placeholder="Password" [(ngModel)]="Password"
-                [ngModelOptions]="{ standalone: true }" required="">
+                [ngModelOptions]="{ standalone: true }" #pass='ngModel' required="">
+             </div>
+             <div *ngIf="pass.invalid && (pass.dirty || pass.touched)"
+                  class="alert alert-danger">Must not empty
              </div>
              <div class="form-left-to-w3l ">
                 <input type="password" name="password" placeholder="Confirm Password" required="">

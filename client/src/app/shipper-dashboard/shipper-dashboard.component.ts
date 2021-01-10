@@ -52,8 +52,9 @@ export class ShipperDashboardComponent implements OnInit {
     moment.updateLocale('en', null);
     hoadon.ngayXN = moment(new Date()).format('MM/DD/YYYY');
     console.log(hoadon.ngayXN);
-    hoadon.trangthaiHD = 'Đã xác nhận';
+    hoadon.trangthaiHD = 'Confirmed';
     const Xacnhan = this.shipperdashboardservice.confirmHoadon(hoadon.maHD, hoadon);
+    alert('Confirmed');
     console.log(Xacnhan);
   }
 
@@ -79,6 +80,7 @@ export class ShipperDashboardComponent implements OnInit {
       }
       localStorage.setItem('sanphamhoadon', JSON.stringify(sanphaminhoadon));
     }
+    localStorage.removeItem('hoadondetailadmin');
     this.router.navigateByUrl('/hoadon-detail');
   }
 
